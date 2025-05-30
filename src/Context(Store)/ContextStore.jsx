@@ -1,18 +1,34 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const TaskContext = createContext();
 
 export const TaskProvider = ({ children }) => {
   const [task, setTask] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [error, setError] = useState(false);
+  const [todos, setTodos] = useState(() => {
+    const data = localStorage.getItem("data");
+    return data ? JSON.parse(data) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("data", JSON.stringify(todos));
+  }, [todos]);
+
+  if (error) {
+    setTimeout(() => {
+      setError(false);
+    }, 1000);
+  }
 
   const handleAdd = () => {
     if (task.trim() === "") {
-      alert("Empty task can't be Added !!");
+      // alert("Empty task can't be Added !!");
+      setError(true);
       return;
     }
     setTodos([...todos, { text: task, id: Date.now(), completed: false }]);
     setTask("");
+    setError(false);
   };
 
   const handleToggle = (id) => {
@@ -36,6 +52,8 @@ export const TaskProvider = ({ children }) => {
         handleAdd,
         handleToggle,
         handleDelete,
+        error,
+        setError,
       }}
     >
       {children}
