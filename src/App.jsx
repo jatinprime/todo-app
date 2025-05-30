@@ -5,7 +5,7 @@ import { TaskProvider } from "./Context(Store)/ContextStore";
 function App() {
   return (
     <TaskProvider>
-      <div className="min-h-screen bg-gradient-to-br from-blue-100 to-pink-200 flex justify-center pt-20 px-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-100 to-gray-100 flex justify-center pt-10 px-4">
         <div className="w-full max-w-[700px]">
           <InputBar />
           <TaskList />
