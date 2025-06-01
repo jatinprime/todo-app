@@ -51,13 +51,16 @@ const TaskList = () => {
               {incompleteTask.map((todo) => (
                 <li
                   key={todo.id}
+                  onClick={() => handleToggle(todo.id)}
                   className="flex items-center justify-between bg-gray-100 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-200"
                 >
-                  <label className="flex items-center gap-2 cursor-pointer w-[calc(100%-58px)]">
+                  <div className="flex items-center gap-2 w-[calc(100%-58px)]">
                     <input
                       type="checkbox"
+                      id="input-check-box"
                       checked={todo.completed}
                       onChange={() => handleToggle(todo.id)}
+                      onClick={(e) => e.stopPropagation()} // prevent li click
                       onKeyDown={(e) => {
                         if (e.key === "Enter") handleToggle(todo.id);
                       }}
@@ -65,9 +68,13 @@ const TaskList = () => {
                     <span className="text-gray-700 break-words w-full">
                       {todo.text}
                     </span>
-                  </label>
+                  </div>
+
                   <button
-                    onClick={() => handleDelete(todo.id)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // prevent li click
+                      handleDelete(todo.id);
+                    }}
                     className="text-red-500 shrink-0 px-2 pb-1 border-2 border-red-400 rounded-full hover:text-red-700 hover:bg-amber-600 focus:bg-amber-600 font-bold text-xl ml-2"
                   >
                     X
@@ -93,13 +100,15 @@ const TaskList = () => {
               {completeTask.map((todo) => (
                 <li
                   key={todo.id}
+                  onClick={() => handleToggle(todo.id)}
                   className="flex items-center justify-between bg-gray-100 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-200"
                 >
-                  <label className="flex items-center gap-2 cursor-pointer w-[calc(100%-58px)]">
+                  <div className="flex items-center gap-2 w-[calc(100%-58px)]">
                     <input
                       type="checkbox"
                       checked={todo.completed}
                       onChange={() => handleToggle(todo.id)}
+                      onClick={(e) => e.stopPropagation()}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") handleToggle(todo.id);
                       }}
@@ -107,9 +116,12 @@ const TaskList = () => {
                     <span className="line-through break-words w-full text-gray-400">
                       {todo.text}
                     </span>
-                  </label>
+                  </div>
                   <button
-                    onClick={() => handleDelete(todo.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDelete(todo.id);
+                    }}
                     className="text-red-500 px-2 pb-1 border-2 border-red-400 rounded-full hover:text-red-700 hover:bg-amber-600 focus:bg-amber-600 font-bold text-xl ml-2"
                   >
                     X
@@ -137,13 +149,15 @@ const TaskList = () => {
                 {incompleteTask.map((todo) => (
                   <li
                     key={todo.id}
+                    onClick={() => handleToggle(todo.id)}
                     className="flex items-center justify-between bg-gray-100 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-200"
                   >
-                    <label className="flex items-center gap-2 cursor-pointer w-[calc(100%-58px)]">
+                    <div className="flex items-center gap-2 w-[calc(100%-58px)]">
                       <input
                         type="checkbox"
                         checked={todo.completed}
                         onChange={() => handleToggle(todo.id)}
+                        onClick={(e) => e.stopPropagation()}
                         onKeyDown={(e) => {
                           if (e.key === "Enter") handleToggle(todo.id);
                         }}
@@ -151,9 +165,12 @@ const TaskList = () => {
                       <span className="text-gray-700 break-words w-full">
                         {todo.text}
                       </span>
-                    </label>
+                    </div>
                     <button
-                      onClick={() => handleDelete(todo.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDelete(todo.id);
+                      }}
                       className="text-red-500 px-2 pb-1 border-2 border-red-400 rounded-full hover:text-red-700 hover:bg-amber-600 focus:bg-amber-600 font-bold text-xl ml-2"
                     >
                       X
@@ -179,23 +196,34 @@ const TaskList = () => {
                 {completeTask.map((todo) => (
                   <li
                     key={todo.id}
+                    onClick={() => handleToggle(todo.id)}
                     className="flex items-center justify-between bg-gray-100 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-200"
                   >
-                    <label className="flex items-center gap-2 cursor-pointer w-[calc(100%-58px)]">
+                    <div className="flex items-center gap-2 w-[calc(100%-58px)]">
                       <input
                         type="checkbox"
                         checked={todo.completed}
                         onChange={() => handleToggle(todo.id)}
+                        onClick={(e) => e.stopPropagation()}
                         onKeyDown={(e) => {
                           if (e.key === "Enter") handleToggle(todo.id);
                         }}
                       />
-                      <span className="line-through break-words w-full text-gray-400">
+                      <span
+                        className={`break-words w-full ${
+                          todo.completed
+                            ? "line-through text-gray-400"
+                            : "text-gray-700"
+                        }`}
+                      >
                         {todo.text}
                       </span>
-                    </label>
+                    </div>
                     <button
-                      onClick={() => handleDelete(todo.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDelete(todo.id);
+                      }}
                       className="text-red-500 px-2 pb-1 border-2 border-red-400 rounded-full hover:text-red-700 hover:bg-amber-600 focus:bg-amber-600 font-bold text-xl ml-2"
                     >
                       X
