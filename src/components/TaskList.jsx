@@ -34,9 +34,8 @@ const TaskList = () => {
         </button>
       </div>
 
-      {/* Responsive layout */}
       <div className="flex justify-center items-start gap-8 mt-3">
-        {/* Desktop: Show both */}
+        {/* {for laptop} */}
         <div className="hidden md:block w-[330px]">
           <div className="w-full bg-white shadow-md rounded-lg pb-4 max-h-[600px] overflow-y-scroll">
             <div className="sticky top-0 bg-white z-10 pb-2 pt-4">
@@ -54,7 +53,7 @@ const TaskList = () => {
                   key={todo.id}
                   className="flex items-center justify-between bg-gray-100 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-200"
                 >
-                  <label className="flex items-center gap-2 cursor-pointer w-full">
+                  <label className="flex items-center gap-2 cursor-pointer w-[calc(100%-58px)]">
                     <input
                       type="checkbox"
                       checked={todo.completed}
@@ -63,11 +62,13 @@ const TaskList = () => {
                         if (e.key === "Enter") handleToggle(todo.id);
                       }}
                     />
-                    <span className="text-gray-700">{todo.text}</span>
+                    <span className="text-gray-700 break-words w-full">
+                      {todo.text}
+                    </span>
                   </label>
                   <button
                     onClick={() => handleDelete(todo.id)}
-                    className="text-red-500 px-2 pb-1 border-2 border-red-400 rounded-full hover:text-red-700 hover:bg-amber-600 focus:bg-amber-600 font-bold text-xl ml-2"
+                    className="text-red-500 shrink-0 px-2 pb-1 border-2 border-red-400 rounded-full hover:text-red-700 hover:bg-amber-600 focus:bg-amber-600 font-bold text-xl ml-2"
                   >
                     X
                   </button>
@@ -94,7 +95,7 @@ const TaskList = () => {
                   key={todo.id}
                   className="flex items-center justify-between bg-gray-100 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-200"
                 >
-                  <label className="flex items-center gap-2 cursor-pointer w-full">
+                  <label className="flex items-center gap-2 cursor-pointer w-[calc(100%-58px)]">
                     <input
                       type="checkbox"
                       checked={todo.completed}
@@ -103,7 +104,7 @@ const TaskList = () => {
                         if (e.key === "Enter") handleToggle(todo.id);
                       }}
                     />
-                    <span className="line-through text-gray-400">
+                    <span className="line-through break-words w-full text-gray-400">
                       {todo.text}
                     </span>
                   </label>
@@ -119,7 +120,7 @@ const TaskList = () => {
           </div>
         </div>
 
-        {/* Mobile: Show one based on state */}
+        {/* for small screen , i guess for  */}
         <div className="w-full md:hidden mt-4">
           {view === "pending" && (
             <div className="w-full bg-white shadow-md rounded-lg pb-4 max-h-[500px] overflow-y-scroll">
@@ -138,7 +139,7 @@ const TaskList = () => {
                     key={todo.id}
                     className="flex items-center justify-between bg-gray-100 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-200"
                   >
-                    <label className="flex items-center gap-2 cursor-pointer w-full">
+                    <label className="flex items-center gap-2 cursor-pointer w-[calc(100%-58px)]">
                       <input
                         type="checkbox"
                         checked={todo.completed}
@@ -147,7 +148,9 @@ const TaskList = () => {
                           if (e.key === "Enter") handleToggle(todo.id);
                         }}
                       />
-                      <span className="text-gray-700">{todo.text}</span>
+                      <span className="text-gray-700 break-words w-full">
+                        {todo.text}
+                      </span>
                     </label>
                     <button
                       onClick={() => handleDelete(todo.id)}
@@ -178,7 +181,7 @@ const TaskList = () => {
                     key={todo.id}
                     className="flex items-center justify-between bg-gray-100 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-200"
                   >
-                    <label className="flex items-center gap-2 cursor-pointer w-full">
+                    <label className="flex items-center gap-2 cursor-pointer w-[calc(100%-58px)]">
                       <input
                         type="checkbox"
                         checked={todo.completed}
@@ -187,7 +190,7 @@ const TaskList = () => {
                           if (e.key === "Enter") handleToggle(todo.id);
                         }}
                       />
-                      <span className="line-through text-gray-400">
+                      <span className="line-through break-words w-full text-gray-400">
                         {todo.text}
                       </span>
                     </label>

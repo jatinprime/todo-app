@@ -24,7 +24,6 @@ const InputBar = () => {
       const seconds = now.getSeconds().toString().padStart(2, "0");
       setCurrentTime(`${hours}:${minutes}:${seconds}`);
     }, 1000);
-    // interval();
   }, []);
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
